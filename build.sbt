@@ -4,6 +4,8 @@ ThisBuild / scalaVersion := "3.3.0"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "fp-in-scala",
-    idePackagePrefix := Some("my.playground")
+    name                                   := "fp-in-scala",
+    idePackagePrefix                       := Some("my.playground"),
+    libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.16",
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.16" % "test"
   )
