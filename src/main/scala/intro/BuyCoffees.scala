@@ -1,5 +1,5 @@
 package my.playground
-package my.playground.intro
+package intro
 
 object BuyCoffees:
   @main
