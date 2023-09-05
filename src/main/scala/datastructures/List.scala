@@ -57,3 +57,10 @@ object List:
     a match
       case Nil        => b
       case Cons(h, t) => Cons(h, append(t, b))
+
+  // not constant time
+  def init[A](xs: List[A]): List[A] =
+    xs match
+      case Nil          => Nil
+      case Cons(h, Nil) => Nil
+      case Cons(h, t)   => Cons(h, init(t))

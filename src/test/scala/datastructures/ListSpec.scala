@@ -96,4 +96,18 @@ class ListSpec extends AnyFunSuite:
     assert(result == List("A", "B", "X", "Y"))
   }
 
+  test("init: return all but the last element") {
+    val result = init(List(1, 3, 5, 7, 9))
+    assert(result == List(1, 3, 5, 7))
+  }
+
+  test("init: return empty when only one element in the list") {
+    val result = init(List(2))
+    assert(result == Nil)
+  }
+
+  test("init: return empty when only the list is empty") {
+    val result = init(Nil)
+    assert(result == Nil)
+  }
 end ListSpec
