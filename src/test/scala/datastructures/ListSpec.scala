@@ -81,4 +81,19 @@ class ListSpec extends AnyFunSuite:
     assert(remained == Nil)
   }
 
+  test("append: should return the first list when the second list is empty") {
+    val result = append(List("A", "B"), Nil)
+    assert(result == List("A", "B"))
+  }
+
+  test("append: should return the second list when the first list is empty") {
+    val result = append(Nil, List("A", "B"))
+    assert(result == List("A", "B"))
+  }
+
+  test("append: should append when two lists are nonempty") {
+    val result = append(List("A", "B"), List("X", "Y"))
+    assert(result == List("A", "B", "X", "Y"))
+  }
+
 end ListSpec
