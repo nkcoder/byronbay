@@ -1,7 +1,6 @@
 package my.playground
 package datastructures
 
-import datastructures.List
 import datastructures.List.*
 
 import org.scalatest.funsuite.AnyFunSuite
