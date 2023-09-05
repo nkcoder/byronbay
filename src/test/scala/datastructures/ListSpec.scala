@@ -1,7 +1,8 @@
 package my.playground
 package datastructures
 
-import datastructures.List.{sum, *}
+import datastructures.List
+import datastructures.List.*
 
 import org.scalatest.funsuite.AnyFunSuite
 
@@ -38,6 +39,37 @@ class ListSpec extends AnyFunSuite:
   test(testName = "List should calculate the sum when data doesn't contain 0") {
     val sumOfInts = product(List(5, 10, 3))
     assert(sumOfInts == 150)
+  }
+
+  test("tail: should throw error when the list is empty") {
+    assertThrows[RuntimeException](tail(Nil))
+  }
+
+  test("tail: should return tail when the list is not empty") {
+    val tailOfList = tail(List(1, 2, 3, 4))
+    assert(tailOfList == List(2, 3, 4))
+  }
+
+  test("drop: should remove n elements from the list") {
+    val xs = List(1, 2, 3, 4, 5, 6)
+    assert(drop(xs, 3) == List(4, 5, 6))
+  }
+
+  test("drop: should return empty when removing more elements from the list") {
+    val xs = List(1, 2, 3)
+    assert(drop(xs, 5) == Nil)
+  }
+
+  test("dropWhile: should remove elements from the list unless condition is not met") {
+    val xs       = List(2, 4, 6, 7, 8)
+    val remained = dropWhile(xs, x => x % 2 == 0)
+    assert(remained == List(7, 8))
+  }
+
+  test("dropWhile: should return empty when all elements are removed") {
+    val xs       = List(10, 25, 38, 19)
+    val remained = dropWhile(xs, x => x >= 10)
+    assert(remained == Nil)
   }
 
 end ListSpec
