@@ -28,6 +28,11 @@ object List:
       case Nil           => sys.error("cannot get tail of an empty list")
       case Cons(_, tail) => tail
 
+  def setHead[A](xs: List[A], x: A): List[A] =
+    xs match
+      case Nil        => Nil
+      case Cons(h, t) => Cons(x, t)
+
   def drop[A](xs: List[A], n: Int): List[A] =
     @tailrec
     def go(as: List[A], n: Int): List[A] =

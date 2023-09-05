@@ -49,6 +49,16 @@ class ListSpec extends AnyFunSuite:
     assert(tailOfList == List(2, 3, 4))
   }
 
+  test("setHead: should return empty when the list is empty") {
+    val newList = setHead(Nil, 10)
+    assert(newList == Nil)
+  }
+
+  test("setHead: should set head when the list is nonempty") {
+    val newList = setHead(List(1, 2, 3), 10)
+    assert(newList == List(10, 2, 3))
+  }
+
   test("drop: should remove n elements from the list") {
     val xs = List(1, 2, 3, 4, 5, 6)
     assert(drop(xs, 3) == List(4, 5, 6))
