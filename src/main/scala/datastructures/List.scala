@@ -64,3 +64,14 @@ object List:
       case Nil          => Nil
       case Cons(h, Nil) => Nil
       case Cons(h, t)   => Cons(h, init(t))
+
+  def foldRight[A, B](xs: List[A], acc: B, f: (A, B) => B): B =
+    xs match
+      case Nil        => acc
+      case Cons(h, t) => f(h, foldRight(t, acc, f))
+
+  def sumViaFoldRight(ns: List[Int]): Int =
+    foldRight(ns, 0, _ + _)
+
+  def productViaFoldRight(ns: List[Double]): Double =
+    foldRight(ns, 1, _ * _)

@@ -26,18 +26,18 @@ class ListSpec extends AnyFunSuite:
   }
 
   test(testName = "List should calculate the product when data is empty") {
-    val sumOfEmptyList = product(Nil)
-    assert(sumOfEmptyList == 1.0)
+    val productOfEmptyList = product(Nil)
+    assert(productOfEmptyList == 1.0)
   }
 
   test(testName = "List should calculate the sum when data contains 0") {
-    val sumOfInts = product(List(34, 0, 45))
-    assert(sumOfInts == 0.0)
+    val productOfInts = product(List(34, 0, 45))
+    assert(productOfInts == 0.0)
   }
 
   test(testName = "List should calculate the sum when data doesn't contain 0") {
-    val sumOfInts = product(List(5, 10, 3))
-    assert(sumOfInts == 150)
+    val productOfInts = product(List(5, 10, 3))
+    assert(productOfInts == 150)
   }
 
   test("tail: should throw error when the list is empty") {
@@ -110,4 +110,15 @@ class ListSpec extends AnyFunSuite:
     val result = init(Nil)
     assert(result == Nil)
   }
+
+  test(testName = "sumViaFoldRight: should calculate the sum data is not empty") {
+    val sumOfInts = sumViaFoldRight(List(34, 90, 45))
+    assert(sumOfInts == 169)
+  }
+
+  test(testName = "productViaFoldRight: should calculate the sum when data doesn't contain 0") {
+    val productOfInts = productViaFoldRight(List(5, 10, 3))
+    assert(productOfInts == 150)
+  }
+
 end ListSpec
