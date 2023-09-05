@@ -44,9 +44,15 @@ object MyProgram:
     formatResult("factorial", n, factorial)
 
   def fibonacci(n: Int): Int =
-//    @tailrec
     def go(n: Int): Int =
       if n == 1 then 0
       else if n == 2 then 1
       else go(n - 1) + go(n - 2)
     go(n)
+
+  def fibonacciV2(n: Int): Int =
+    def go(n: Int, current: Int, next: Int): Int =
+      if n <= 0 then current
+      else go(n - 1, next, current + next)
+
+    go(n, 0, 1)

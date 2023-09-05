@@ -1,0 +1,1 @@
+Reading <Functional Programming (2nd Edition)>, and here are the source code for playground.
