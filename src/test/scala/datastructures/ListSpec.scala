@@ -1,7 +1,7 @@
 package my.playground
 package datastructures
 
-import datastructures.List.*
+import datastructures.List.{sum, *}
 
 import org.scalatest.funsuite.AnyFunSuite
 
@@ -14,3 +14,30 @@ class ListSpec extends AnyFunSuite:
     assert(stringList == List("Hello", "World", "!"))
     assert(intList == Cons(1, Cons(2, Cons(3, Nil))))
   }
+
+  test(testName = "List should calculate the sum when data is empty") {
+    val sumOfEmptyList = sum(Nil)
+    assert(sumOfEmptyList == 0)
+  }
+
+  test(testName = "List should calculate the sum data is not empty") {
+    val sumOfInts = sum(List(34, 90, 45))
+    assert(sumOfInts == 169)
+  }
+
+  test(testName = "List should calculate the product when data is empty") {
+    val sumOfEmptyList = product(Nil)
+    assert(sumOfEmptyList == 1.0)
+  }
+
+  test(testName = "List should calculate the sum when data contains 0") {
+    val sumOfInts = product(List(34, 0, 45))
+    assert(sumOfInts == 0.0)
+  }
+
+  test(testName = "List should calculate the sum when data doesn't contain 0") {
+    val sumOfInts = product(List(5, 10, 3))
+    assert(sumOfInts == 150)
+  }
+
+end ListSpec
