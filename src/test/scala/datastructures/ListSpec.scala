@@ -121,4 +121,19 @@ class ListSpec extends AnyFunSuite:
     assert(productOfInts == 150)
   }
 
+  test("foldRight: pass Nil and Cons as parameters") {
+    val result = foldRight(List(1, 2, 3), Nil: List[Int], Cons(_, _))
+    assert(result == Cons(1, Cons(2, Cons(3, Nil))))
+  }
+
+  test("len: return the length of the list") {
+    val length = len(List(1, 3, 5, 7, 9))
+    assert(length == 5)
+  }
+
+  test("len: return 0 when list is empty") {
+    val length = len(Nil)
+    assert(length == 0)
+  }
+
 end ListSpec

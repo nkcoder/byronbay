@@ -75,3 +75,6 @@ object List:
 
   def productViaFoldRight(ns: List[Double]): Double =
     foldRight(ns, 1, _ * _)
+
+  def len[A](as: List[A]): Int =
+    foldRight(as, 0, (_, y) => 1 + y)
