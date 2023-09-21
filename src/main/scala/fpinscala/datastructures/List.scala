@@ -1,5 +1,5 @@
 package my.playground
-package datastructures
+package fpinscala.datastructures
 
 import scala.annotation.tailrec
 
@@ -78,3 +78,5 @@ object List:
 
   def len[A](as: List[A]): Int =
     foldRight(as, 0, (_, y) => 1 + y)
+
+  def foldLeft[A, B](as: List[A], acc: B, f: (B, A) => B): B = ???

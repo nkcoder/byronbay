@@ -1,5 +1,5 @@
 package my.playground
-package getstarted
+package fpinscala.getstarted
 
 import org.scalatest.funsuite.AnyFunSuite
 import HigherOrderFunction.*

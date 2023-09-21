@@ -1,7 +1,7 @@
 package my.playground
-package getstarted
+package fpinscala.getstarted
 
-import MyProgram.{factorial, fibonacci}
+import my.playground.fpinscala.getstarted.MyProgram.{factorial, fibonacci}
 import org.scalatest.funsuite.AnyFunSuite
 
 class MyProgramSpec extends AnyFunSuite:

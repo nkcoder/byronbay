@@ -1,5 +1,5 @@
 package my.playground
-package intro
+package fpinscala.intro
 
 object BuyCoffees:
   @main

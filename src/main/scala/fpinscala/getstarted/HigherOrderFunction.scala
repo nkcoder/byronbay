@@ -1,5 +1,5 @@
 package my.playground
-package getstarted
+package fpinscala.getstarted
 
 import scala.annotation.tailrec
 
