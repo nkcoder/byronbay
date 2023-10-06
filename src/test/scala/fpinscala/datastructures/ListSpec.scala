@@ -127,13 +127,13 @@ class ListSpec extends AnyFunSuite:
   }
 
   test("len: return the length of the list") {
-    val length = len(fpinscala.datastructures.List(1, 3, 5, 7, 9))
-    assert(length == 5)
+    val len = length(fpinscala.datastructures.List(1, 3, 5, 7, 9))
+    assert(len == 5)
   }
 
   test("len: return 0 when list is empty") {
-    val length = len(Nil)
-    assert(length == 0)
+    val len = length(Nil)
+    assert(len == 0)
   }
 
 end ListSpec
