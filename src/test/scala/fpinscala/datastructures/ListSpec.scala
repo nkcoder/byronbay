@@ -1,7 +1,7 @@
 package my.playground
 package fpinscala.datastructures
 
-import my.playground.fpinscala.datastructures.List.*
+import fpinscala.datastructures.List.*
 import org.scalatest.funsuite.AnyFunSuite
 
 class ListSpec extends AnyFunSuite:
