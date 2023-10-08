@@ -1,7 +1,7 @@
 package my.playground
 package fpinscala.exceptions
 
-import fpinscala.exceptions.Either.{Left, Right}
+import fpinscala.exceptions.Either.{map2Both, Left, Right}
 
 class ValidationWithEither
 
@@ -19,7 +19,10 @@ object Age:
 
 case class Person(name: Name, age: Age)
 object Person:
+  // only reports the first error encountered
   def make(name: String, age: Int): Either[String, Person] =
     Name(name).map2(Age(age))(Person(_, _))
 
-
+  // accumulate all errors
+  def makeBoth(name: String, age: Int): Either[List[String], Person] =
+    map2Both(Name(name), Age(age))(Person(_, _))

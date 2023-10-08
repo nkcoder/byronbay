@@ -27,4 +27,9 @@ class EitherSpec extends AnyFunSuite:
     val p = Person.make("Kate", 10)
     assert(p.isRight)
   }
+
+  test(testName = "Person: should report all errors") {
+    val p = Person.makeBoth("", -5)
+    assert(p == Left(List("Name is empty", "Age is out of range")))
+  }
 end EitherSpec
