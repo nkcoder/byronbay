@@ -9,8 +9,8 @@ class WordCountSpec extends AnyFunSuite:
   test(testName = "should count the number of occurrences of each word in the document") {
     val document =
       """"Functional programming is
-         | a declarative programming paradigm style!
-         | """.stripMargin
+        | a declarative programming paradigm style!
+        | """.stripMargin
     val wordCountResult = WordCount.countWords(document)
 
     assert(
