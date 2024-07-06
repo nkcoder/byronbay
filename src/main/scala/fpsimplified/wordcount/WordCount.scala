@@ -7,6 +7,12 @@ import scala.util.Try
 
 /**
  * Given a document that’s represented as a single Scala String, count the number of occurrences of each word in that document.
+ * Rules:
+ * - Immutable variables
+ * - Immutable data structures
+ * - Pure functions
+ * - Expression-oriented programming
+ * - Functional error-handling
  */
 
 /**
