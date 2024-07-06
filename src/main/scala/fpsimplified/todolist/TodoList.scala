@@ -1,12 +1,9 @@
 package my.playground
 package fpsimplified.todolist
 
-import java.io.FileWriter
+import scala.util.Try
 
-import scala.io.Source
-import scala.util.{Failure, Success, Try, Using}
-
-import fpsimplified.todolist.IOHelper.{promptUser, readInput, showHelp}
+import fpsimplified.todolist.IOHelper.{promptUser, readInput}
 
 /**
  * A simple task list app: add, remove, and list tasks.
@@ -35,6 +32,3 @@ object TodoList {
     mainLoop()
   }
 }
-
-
-

@@ -2,7 +2,7 @@ package my.playground
 package fpsimplified.todolist
 
 import scala.io.StdIn
-import scala.util.{Failure, Success, Try}
+import scala.util.Try
 
 import fpsimplified.todolist.IOHelper.showHelp
 
@@ -48,18 +48,17 @@ class InputHandler(db: Database):
       case _   => println(s"Invalid input: $input")
   }
 
-  private def handleAdd(task: String): Try[Unit] = db.insert(task)
+  private def handleAdd(task: String): Either[Throwable, Unit] = db.insert(task)
 
-  private def handleDelete(taskIdString: String): Try[Unit] = Try {
+  private def handleDelete(taskIdString: String): Either[Throwable, Unit] =
     val indexToDelete = taskIdString.toInt - 1
     db.delete(indexToDelete).map(_ => ())
-  }
 
   private def handleView(): Try[Unit] = Try {
     val res = db.selectAll()
     res match
-      case Success(tasks) =>
+      case Right(tasks) =>
         for (task, count) <- tasks.zip(LazyList.from(1))
         do println(s"$count: $task")
-      case Failure(e) => println(s"Error: $e")
+      case Left(e) => println(s"Error: $e")
   }
