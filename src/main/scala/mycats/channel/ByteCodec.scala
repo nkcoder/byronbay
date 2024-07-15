@@ -1,6 +1,8 @@
 package my.playground
 package mycats.channel
 
+import scala.util.Try
+
 /**
  * Can be instanced by any type; Cleaner interface; Several implementations.
  */
@@ -13,6 +15,10 @@ trait ByteEncoder[A] {
 }
 
 object ByteEncoder {
+  def apply[A](using encoder: ByteEncoder[A]): ByteEncoder[A] = encoder
+
+  def instance[A](f: A => Array[Byte]): ByteEncoder[A] = (a: A) => f(a)
+
   given ByteEncoder[Int] with {
     override def encode(a: Int): Array[Byte] = {
       val buffer = java.nio.ByteBuffer.allocate(4)
@@ -39,8 +45,29 @@ object FileTypeChannel extends TypeChannel {
     }
 }
 
+trait ByteDecoder[A] {
+  def decode(bytes: Array[Byte]): Option[A]
+}
+
+object ByteDecoder {
+  def apply[A](using decoder: ByteDecoder[A]): ByteDecoder[A] = decoder
+
+  def instance[A](f: Array[Byte] => Option[A]): ByteDecoder[A] = (bytes: Array[Byte]) => f(bytes)
+
+  given ByteDecoder[String] with {
+    override def decode(bytes: Array[Byte]): Option[String] =
+      Try(new String(bytes)).toOption
+  }
+}
+
+/**
+ * Testing
+ */
 object TypeChannelApp extends App {
   FileTypeChannel.write(45)
-
   FileTypeChannel.write("Hello, type2!")
+
+  val data: Array[Byte] = Array(72, 101, 108, 108, 111)
+  val decoded           = ByteDecoder[String].decode(data)
+  assert(decoded.contains("Hello"))
 }
