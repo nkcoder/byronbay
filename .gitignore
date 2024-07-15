@@ -7,3 +7,4 @@ targetl
 .bloop
 .metals
 .scala-build
+*.txt

@@ -1,3 +1,6 @@
+> 
+
+
 ## Learning Functional Programming with Scala 3
 
 Learn and practice Scala 3 and Functional Programming with following resources:
