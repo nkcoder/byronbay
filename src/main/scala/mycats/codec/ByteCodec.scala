@@ -18,8 +18,12 @@ trait ByteCodec[A] extends ByteDecoder[A] with ByteEncoder[A]
 trait ByteCodecLaws[A] {
   def codec: ByteCodec[A]
 
-  def ismonomorphic(a: A): Boolean =
+  def ismonomorphic(a: A): Boolean = {
+    val encoded = codec.encode(a)
+    val decoded = codec.decode(encoded)
+    println(s"encoded: ${encoded.toList}, decoded: $decoded, a: $a, contains: ${decoded.contains(a)}")
     codec.decode(codec.encode(a)).contains(a)
+  }
 }
 
 object ByteCodec {
@@ -51,5 +55,17 @@ object ByteCodec {
 
   object StringByteCodecLaws extends ByteCodecLaws[String]:
     override def codec: ByteCodec[String] = stringByteCodec
+
+  given optionByteCodec[A](using codec: ByteCodec[A]): ByteCodec[Option[A]] = new ByteCodec[Option[A]] {
+    override def decode(bytes: Array[Byte]): Option[Option[A]] =
+      if bytes.isEmpty then Some(None)
+      else codec.decode(bytes).map(Some(_))
+
+    override def encode(a: Option[A]): Array[Byte] = a.fold(Array[Byte]())(codec.encode)
+  }
+
+  object OptionByteCodecLaws extends ByteCodecLaws[Option[Int]] {
+    override def codec: ByteCodec[Option[Int]] = optionByteCodec[Int]
+  }
 
 }

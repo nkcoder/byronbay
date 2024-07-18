@@ -1,7 +1,7 @@
 package my.playground
 package mycats.codec
 
-import mycats.codec.ByteCodec.{IntByteCodecLaws, StringByteCodecLaws}
+import mycats.codec.ByteCodec.{IntByteCodecLaws, OptionByteCodecLaws, StringByteCodecLaws}
 
 import org.scalacheck.Arbitrary
 import org.scalacheck.Prop.forAll
@@ -36,6 +36,10 @@ object StringByteCodecTests extends ByteCodecTests[String] {
   def laws: ByteCodecLaws[String] = StringByteCodecLaws
 }
 
+object OptionByteCodecTests extends ByteCodecTests[Option[Int]] {
+  def laws: ByteCodecLaws[Option[Int]] = OptionByteCodecLaws
+}
+
 class ByteCodecSpec extends AnyFunSuite with Configuration with FunSuiteDiscipline {
 
   checkAll("ByteCodec[Int]", IntByteCodecTests.byteCodec)
@@ -44,4 +48,6 @@ class ByteCodecSpec extends AnyFunSuite with Configuration with FunSuiteDiscipli
   // using the `apply` method
   checkAll("ByteCodec[Int] (apply)", ByteCodecTests[Int].byteCodec)
   checkAll("ByteCodec[String] (apply)", ByteCodecTests[String].byteCodec)
+
+  checkAll("ByteCodec[Option[Int]]", ByteCodecTests[Option[Int]].byteCodec)
 }
