@@ -1,5 +1,5 @@
 package my.playground
-package mycats.codec
+package catscore.codec
 
 import java.io.FileOutputStream
 import java.nio.ByteBuffer

@@ -1,7 +1,7 @@
 package my.playground
-package mycats.codec
+package catscore.codec
 
-import mycats.codec.ByteCodec.{IntByteCodecLaws, OptionByteCodecLaws, StringByteCodecLaws}
+import catscore.codec.ByteCodec.{IntByteCodecLaws, OptionByteCodecLaws, StringByteCodecLaws}
 
 import org.scalacheck.Arbitrary
 import org.scalacheck.Prop.forAll
