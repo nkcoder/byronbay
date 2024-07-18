@@ -1,5 +1,5 @@
 package my.playground
-package mycats.channel
+package mycats.codec
 
 import java.io.FileOutputStream
 import java.nio.ByteBuffer
