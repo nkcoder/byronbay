@@ -1,5 +1,5 @@
 package my.playground
-package catscore.codec
+package catscore.typeclass
 
 extension [A](a: A) {
   def encode(using codec: ByteCodec[A]): Array[Byte] = codec.encode(a)

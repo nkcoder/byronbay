@@ -1,5 +1,5 @@
 package my.playground
-package catscore.codec
+package catscore.typeclass
 
 trait ByteEncodable {
   def encode: Array[Byte]

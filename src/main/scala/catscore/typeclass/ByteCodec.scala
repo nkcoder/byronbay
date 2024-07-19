@@ -1,5 +1,5 @@
 package my.playground
-package catscore.codec
+package catscore.typeclass
 
 import java.nio.ByteBuffer
 
