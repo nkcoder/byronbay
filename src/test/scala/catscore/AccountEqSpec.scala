@@ -4,8 +4,9 @@ package catscore
 import org.scalatest.flatspec.AnyFlatSpec
 
 class AccountEqSpec extends AnyFlatSpec {
-  // Eq tests
-  "Account" should "be equal by id" in {
+  behavior of "Account Eq"
+
+  it should "be equal by id" in {
     import cats.syntax.eq.given
     import Account.EqInstances.eqById2
     import cats.instances.long.given

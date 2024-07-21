@@ -8,7 +8,9 @@ class AccountOrdSpec extends AnyFlatSpec {
   def sort[A](list: List[A])(using orderA: Order[A]): List[A] =
     list.sorted(orderA.toOrdering)
 
-  "AccountOrd" should "order accounts by id" in {
+  behavior of "Account Ord"
+
+  it should "order accounts by id" in {
     val a = Account(2, "123", 100.0, "John")
     val b = Account(1, "456", 105.0, "Kate")
 

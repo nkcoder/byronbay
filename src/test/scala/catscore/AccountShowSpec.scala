@@ -4,7 +4,9 @@ package catscore
 import org.scalatest.flatspec.AnyFlatSpecLike
 
 class AccountShowSpec extends AnyFlatSpecLike {
-  "Account" should "show the same as toString" in {
+  behavior of "Account Show"
+
+  it should "show the same as toString" in {
     val account = Account(100L, "123-4567", 2000, "John Doe")
     assert(Account.toStringShow.show(account) == account.toString)
   }

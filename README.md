@@ -1,9 +1,8 @@
-> [Byron Bay](https://byronbay.com) is a coastal town in the southeastern Australian state of New South Wales. It’s a
-> popular holiday destination, known for its beaches, surfing and scuba diving sites.
+> Byron Bay Main Beach: A popular destination for surfers and beachgoers, Main Beach features golden sands, rolling waves, and the iconic Cape Byron Lighthouse.
 
 This repo is used to learn and practice Scala 3 and Functional Programming.
 
-## Resources: Functional programming with Scala 3
+## Resources: Functional programming in Scala
 
 - [Programming in Scala, Fifth Edition)](https://www.artima.com/shop/programming_in_scala_5ed)
 - [Functional Programming in Scala, Second Edition](https://www.manning.com/books/functional-programming-in-scala-second-edition)
