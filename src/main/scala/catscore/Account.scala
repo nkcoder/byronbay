@@ -1,7 +1,7 @@
 package my.playground
 package catscore
 
-import cats.Eq
+import cats.{Eq, Show}
 import cats.kernel.Order
 
 case class Account(id: Long, number: String, balance: Double, owner: String)
@@ -9,7 +9,7 @@ case class Account(id: Long, number: String, balance: Double, owner: String)
 object Account {
 
   /**
-   * Eq
+   * Eq: is an alternative to the standard Java `equals` method. It is defined by the single method `eqv`.
    */
   given universalEq: Eq[Account] = Eq.fromUniversalEquals
 
@@ -27,7 +27,7 @@ object Account {
   }
 
   /**
-   * Ord
+   * Ord: is used to define a total ordering on some type A
    */
   // use Order.by
   given orderById(using Order[Long]): Order[Account] = Order.by(_.id)
@@ -41,4 +41,12 @@ object Account {
     given orderByBalance(using Order[Double]): Order[Account] = Order.by(_.balance)
   }
 
+  /**
+   * Show: allows us to only have String-conversions defined for the data types we actually want.
+   */
+  given toStringShow: Show[Account] = Show.fromToString
+
+  object ShowInstances {
+    given customShow: Show[Account] = Show.show(account => s"${account.number} - $$${account.owner.toUpperCase}")
+  }
 }
