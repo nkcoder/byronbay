@@ -3,6 +3,12 @@ package catscore.typeclass.monoid
 
 import cats.Monoid
 
+/**
+ * Monoid: extends the power of Semigroup by providing an additional empty value.
+ *
+ * [[https://typelevel.org/cats/typeclasses/monoid.html]]
+ */
+
 case class Speed(value: Double)
 
 object Speed {

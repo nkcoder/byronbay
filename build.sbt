@@ -6,7 +6,7 @@ ThisBuild / scalaVersion := "3.4.2"
 
 val scalacticVersion           = "3.2.18"
 val scalaTestVersion           = "3.2.18"
-val zioVersion                 = "2.1.5"
+val zioVersion                 = "2.1.6"
 val catsCoreVersion            = "2.12.0"
 val disciplineCoreVersion      = "1.7.0"
 val disciplineScalaTestVersion = "2.3.0"
