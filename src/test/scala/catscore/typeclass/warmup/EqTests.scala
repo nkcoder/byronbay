@@ -1,5 +1,5 @@
 package my.playground
-package catscore.typeclass
+package catscore.typeclass.warmup
 
 import org.scalacheck.Arbitrary
 import org.scalacheck.Prop.forAll

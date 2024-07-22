@@ -1,5 +1,5 @@
 package my.playground
-package catscore.typeclass
+package catscore.typeclass.warmup
 
 import java.io.FileOutputStream
 import java.nio.ByteBuffer

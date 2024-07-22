@@ -1,5 +1,5 @@
 package my.playground
-package catscore
+package catscore.typeclass.monoid
 
 import cats.Monoid
 

@@ -1,7 +1,7 @@
 package my.playground
-package catscore.typeclass
+package catscore.typeclass.warmup
 
-import catscore.typeclass.ByteCodec.{IntByteCodecLaws, OptionByteCodecLaws, StringByteCodecLaws}
+import catscore.typeclass.warmup.ByteCodec.{IntByteCodecLaws, OptionByteCodecLaws, StringByteCodecLaws}
 
 import org.scalacheck.Arbitrary
 import org.scalacheck.Prop.forAll

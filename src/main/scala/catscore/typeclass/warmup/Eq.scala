@@ -1,5 +1,5 @@
 package my.playground
-package catscore.typeclass
+package catscore.typeclass.warmup
 
 trait Eq[A] {
   def eqv(x: A, y: A): Boolean

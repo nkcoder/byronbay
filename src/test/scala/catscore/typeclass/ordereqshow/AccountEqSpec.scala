@@ -1,5 +1,7 @@
 package my.playground
-package catscore
+package catscore.typeclass.ordereqshow
+
+import catscore.typeclass.ordereqshow.Account
 
 import org.scalatest.flatspec.AnyFlatSpec
 

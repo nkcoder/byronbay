@@ -1,5 +1,5 @@
 package my.playground
-package catscore
+package catscore.typeclass.ordereqshow
 
 import cats.{Eq, Show}
 import cats.kernel.Order

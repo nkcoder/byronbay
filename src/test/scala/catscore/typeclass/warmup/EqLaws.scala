@@ -1,5 +1,5 @@
 package my.playground
-package catscore.typeclass
+package catscore.typeclass.warmup
 
 trait EqLaws[A] {
   def eq: Eq[A]

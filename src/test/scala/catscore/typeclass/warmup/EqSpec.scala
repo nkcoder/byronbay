@@ -1,5 +1,5 @@
 package my.playground
-package catscore.typeclass
+package catscore.typeclass.warmup
 
 class EqSpec extends MySpec {
   checkAll("Eq[Int]", EqTests[Int].eq)
