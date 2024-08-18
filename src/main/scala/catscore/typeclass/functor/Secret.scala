@@ -10,6 +10,19 @@ import cats.Functor
  * constructors are List, Option, and Future.
  *
  * [[https://typelevel.org/cats/typeclasses/functor.html]]
+ * {{{
+ * trait Functor[F[_]] {
+ *   def map[A, B](fa: F[A])(f: A => B): F[B]
+ * }
+ *
+ * // Example implementation for Option
+ * implicit val functorForOption: Functor[Option] = new Functor[Option] {
+ *   def map[A, B](fa: Option[A])(f: A => B): Option[B] = fa match {
+ *     case None    => None
+ *     case Some(a) => Some(f(a))
+ *   }
+ * }
+ * }}}
  */
 
 case class Secret[A](value: A) {
