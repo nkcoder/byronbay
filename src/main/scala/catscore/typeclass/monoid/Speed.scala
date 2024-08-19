@@ -5,8 +5,16 @@ import cats.Monoid
 
 /**
  * Monoid: extends the power of Semigroup by providing an additional empty value.
- *
  * [[https://typelevel.org/cats/typeclasses/monoid.html]]
+ * {{{
+ * trait Semigroup[A] {
+ *   def combine(x: A, y: A): A
+ * }
+ *
+ * trait Monoid[A] extends Semigroup[A] {
+ *   def empty: A
+ * }
+ * }}}
  */
 
 case class Speed(value: Double)
