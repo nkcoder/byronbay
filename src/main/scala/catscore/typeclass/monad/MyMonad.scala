@@ -1,6 +1,8 @@
 package my.playground
 package catscore.typeclass.monad
 
+import scala.util.{Success, Try, Failure}
+
 import cats.Monad
 
 /**
@@ -44,22 +46,37 @@ object MyMonad {
 
   }
 
-  def eitherMonad[E]: Monad[[A] =>> Either[E, A]] = new Monad[[A] =>> Either[E, A]] {
+  /**
+   * The `=>>` operator:
+   * `=>>` is a type lambda operator introduced in Scala 3. It's used to define anonymous type constructors.
+   * In [R] =>> Either[L, R]:
+   *
+   * This creates a type constructor that takes one type parameter (R).
+   * It then applies this R to Either[L, R].
+   * The result is a type constructor that only needs one type parameter (R) instead of two (L and R).
+   *
+   * This is necessary because Monad expects a type constructor of kind * -> * (taking one type parameter), but Either
+   * normally takes two type parameters. The =>> syntax allows us to partially apply the L type, leaving a type
+   * constructor that only needs the R type.
+   *
+   * In essence, [R] =>> Either[L, R] is saying: "For any type R, construct an Either with L as the left type and R as
+   * the right type." This allows us to treat Either as a Monad for any fixed left type L.
+   */
+  given eitherMonad[L]: Monad[[R] =>> Either[L, R]] with {
+    def pure[A](a: A): Either[L, A] = Right(a)
 
-    def pure[A](a: A): Either[E, A] = Right(a)
-
-    def flatMap[A, B](fa: Either[E, A])(f: A => Either[E, B]): Either[E, B] = fa match {
-      case Right(a) => f(a)
-      case Left(e)  => Left(e)
+    def flatMap[A, B](fa: Either[L, A])(f: A => Either[L, B]): Either[L, B] = fa match {
+      case Right(r) => f(r)
+      case Left(l)  => Left(l)
     }
 
-    override def map[A, B](fa: Either[E, A])(f: A => B): Either[E, B] = flatMap(fa)(a => pure(f(a)))
+    override def map[A, B](fa: Either[L, A])(f: A => B): Either[L, B] = flatMap(fa)(a => pure(f(a)))
 
-    override def flatten[A](ffa: Either[E, Either[E, A]]): Either[E, A] = flatMap(ffa)(identity)
+    override def flatten[A](ffa: Either[L, Either[L, A]]): Either[L, A] = flatMap(ffa)(identity)
 
-    override def tailRecM[A, B](a: A)(f: A => Either[E, Either[A, B]]): Either[E, B] = {
+    override def tailRecM[A, B](a: A)(f: A => Either[L, Either[A, B]]): Either[L, B] = {
       @annotation.tailrec
-      def loop(a: A): Either[E, B] = f(a) match {
+      def loop(a: A): Either[L, B] = f(a) match {
         case Left(e)         => Left(e)
         case Right(Left(a1)) => loop(a1)
         case Right(Right(b)) => Right(b)
@@ -68,4 +85,30 @@ object MyMonad {
       loop(a)
     }
   }
+
+
+  given tryMonad: Monad[Try] with {
+    def pure[A](a: A): Try[A] = Success(a)
+
+    def flatMap[A, B](fa: Try[A])(f: A => Try[B]): Try[B] = fa match {
+      case Success(a) => f(a)
+      case Failure(e) => Failure(e)
+    }
+
+    override def map[A, B](fa: Try[A])(f: A => B): Try[B] = flatMap(fa)(a => pure(f(a)))
+
+    override def flatten[A](ffa: Try[Try[A]]): Try[A] = flatMap(ffa)(identity)
+
+    override def tailRecM[A, B](a: A)(f: A => Try[Either[A, B]]): Try[B] = {
+      @annotation.tailrec
+      def loop(a: A): Try[B] = f(a) match {
+        case Failure(e)           => Failure(e)
+        case Success(Left(a1))    => loop(a1)
+        case Success(Right(b))    => Success(b)
+      }
+
+      loop(a)
+    }
+  }
+
 }
